@@ -58,6 +58,28 @@ run `bundle install`
 
 ## Review
 
+**Initial enhancement:**
+- Make the dictionary set as small as possible on each loop by removing words that are too long and those that start with the wrong letter
+
+**v1.0 possible enhancements**
+
+- a new Regexp is built for each word in the dictionary on each `_find_words` call. Possible to remove this?
+- might be possible using negative lookaheads / capture groups
+- benchmark for `873.7829`: 
+  - `17.460000   0.100000  17.560000 ( 17.622081)`
+- use memoization because the same word set may already have been used
+- unexpectedly, narrowing the dictionary set by using the first 2 characters was slower than matching just the first character. (about 30s)
+
+**successful enhancements**
+
+- using `=~` instead of `Regexp.new` to narrow the dictionary benchmarked: 
+  - `9.150000   0.090000   9.240000 (  9.272512)`
+- using `@dict_cache` to cache narrowed dictionary word lists by number sequences cuts the time to:
+  - `7.500000   0.080000   7.580000 (  7.631965)`
+- **Huge improvement!** Using `@regex_cache` to cache the Regex string by numbers and word length cuts the time to: 
+  - `0.950000   0.030000   0.980000 (  0.991224)`
+
+
 ## License
 
 This code is released under the [MIT License](http://www.opensource.org/licenses/MIT)
