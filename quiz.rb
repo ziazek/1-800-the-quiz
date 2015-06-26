@@ -29,8 +29,8 @@ class WordMaker
   def find_words(word_hash)
     # calls _find_words for the wordling and the next skipped number
     _find_words(word_hash)
-    # try skipping one number
-    if word_hash[:numbers].length > 1
+    # try skipping one number, but don't let the first character of an answer be a digit
+    if word_hash[:numbers].length > 1 && word_hash[:words].length > 0
       sk = {words: word_hash[:words].clone, numbers: word_hash[:numbers].clone}
       sk[:words] << sk[:numbers][0]
       sk[:numbers][0] = ''
@@ -52,10 +52,7 @@ class WordMaker
         # and delete the same length of digits from the start of the numbers string
         new_word[:numbers][0...word.length] = ''
         if new_word[:numbers].length < MIN_WORD_LENGTH
-          if new_word[:numbers].length == 1
-            new_word[:words] << new_word[:numbers]
-            new_word[:numbers] = ''
-          end
+          next unless new_word[:numbers].length == 0 
           @answers << new_word
           next
         end

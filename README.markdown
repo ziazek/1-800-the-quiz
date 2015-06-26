@@ -39,6 +39,14 @@ Ruby 2.2.2
 
 ## Notes
 
+- dictionary.txt is a Scrabble dictionary. 
+
+```
+Usage: ./quiz.rb [options] [source.txt]
+    -d, --dict DICTIONARY_FILE       A dictionary file. Defaults to /usr/share/dict/words
+    -h                               Help
+```
+
 ## Usage
 
 run `bundle install`
@@ -79,7 +87,10 @@ run `bundle install`
 - **Huge improvement!** Using `@regex_cache` to cache the Regex string by numbers and word length cuts the time to: 
   - `0.950000   0.030000   0.980000 (  0.991224)`
 
+**reject answers with start and trailing digit**
 
+- benchmark: 
+  - `0.680000   0.030000   0.710000 (  0.700799)`
 ## License
 
 This code is released under the [MIT License](http://www.opensource.org/licenses/MIT)
