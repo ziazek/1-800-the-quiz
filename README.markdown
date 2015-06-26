@@ -64,6 +64,8 @@ Usage: ./quiz.rb [options] [source.txt]
 
 ## Review
 
+The initial solution hit many obstacles with overwriting existing variables. It is very important to clone/duplicate the variables correctly, otherwise the errors can be very hard to trace. I used Struct in the initial solution and was befuddled by Ruby's [shallow-copy](http://stackoverflow.com/a/4206248/575388) behaviour. 
+
 **Initial enhancement:**
 - Make the dictionary set as small as possible on each loop by removing words that are too long and those that start with the wrong letter
 
