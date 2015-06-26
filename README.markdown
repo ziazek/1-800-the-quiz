@@ -41,15 +41,15 @@ Ruby 2.2.2
 
 - dictionary.txt is a Scrabble dictionary. 
 
+## Usage
+
+run `bundle install`
+
 ```
 Usage: ./quiz.rb [options] [source.txt]
     -d, --dict DICTIONARY_FILE       A dictionary file. Defaults to /usr/share/dict/words
     -h                               Help
 ```
-
-## Usage
-
-run `bundle install`
 
 ## Understanding the Question
 
